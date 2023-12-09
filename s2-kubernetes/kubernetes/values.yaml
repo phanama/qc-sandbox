@@ -1,3 +1,6 @@
+# WARNING: this is for demo purposes only
+# putting passwords as plaintext in values.yaml is not secure
+# for real-world applications, please use your CI/CD secure setup, e.g in protected variables.
 mongodb-sharded:
   mongodbRootPassword: "password123"
   shards: 2
