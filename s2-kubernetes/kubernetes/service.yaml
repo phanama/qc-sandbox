@@ -1,0 +1,28 @@
+# NodePort service for mongo-express UI application
+# screenshot is available in the [screenshots directory](../screenshots)
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    meta.helm.sh/release-name: mongodb
+    meta.helm.sh/release-namespace: default
+  labels:
+    app.kubernetes.io/instance: mongodb
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: mongo-express
+    app.kubernetes.io/version: 0.54.0
+    helm.sh/chart: mongo-express-6.0.0
+  name: mongodb-mongo-express
+  namespace: default
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    nodePort: 31853
+    port: 8081
+    protocol: TCP
+    targetPort: http
+  selector:
+    app.kubernetes.io/instance: mongodb
+    app.kubernetes.io/name: mongo-express
+  sessionAffinity: None

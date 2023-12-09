@@ -1,0 +1,39 @@
+# shard-0 pvc
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app.kubernetes.io/component: shardsvr
+    app.kubernetes.io/instance: mongodb
+    app.kubernetes.io/name: mongodb-sharded
+  name: datadir-mongodb-mongodb-sharded-shard0-data-0
+  namespace: default
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: local-path
+  volumeMode: Filesystem
+  volumeName: pvc-dee9c62f-cc32-4960-b283-d5871d309b87
+---
+# shard-1 pvc
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  labels:
+    app.kubernetes.io/component: shardsvr
+    app.kubernetes.io/instance: mongodb
+    app.kubernetes.io/name: mongodb-sharded
+  name: datadir-mongodb-mongodb-sharded-shard1-data-0
+  namespace: default
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: local-path
+  volumeMode: Filesystem
+  volumeName: pvc-d6475bf2-17a2-4fa4-99e2-14c6a6cc6134
