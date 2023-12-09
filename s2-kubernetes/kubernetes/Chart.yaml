@@ -1,0 +1,20 @@
+name: mongodb
+version: 0.0.1
+dependencies:
+# mongodb database
+- name: mongodb-sharded
+  version: "3.11.0"
+  repository: "https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami"
+# mongodb database UI based on nodejs
+- name: mongo-express
+  version: "6.0.0"
+  repository: "https://cowboysysop.github.io/charts"
+# prometheus operator for monitoring
+- name: kube-prometheus-stack
+  version: "55.0.0"
+  repository: "https://prometheus-community.github.io/helm-charts"
+# mongodb exporter
+- name: prometheus-mongodb-exporter
+  version: "3.4.0"
+  repository: "https://prometheus-community.github.io/helm-charts"
+  

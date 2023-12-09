@@ -1,0 +1,45 @@
+mongodb-sharded:
+  mongodbRootPassword: "password123"
+  shards: 2
+  # mongos Deployment fronts client request to the sharded mongodb StatefulSet
+  mongos:
+    replicas: 2
+    resources:
+      requests:
+        cpu: 50m
+        memory: 128Mi
+  # enable persistence, provision pvc with 1Gi capacity
+  configsvr:
+    persistence:
+      enabled: true
+      size: 1Gi
+  shardsvr:
+    persistence:
+      enabled: true
+      size: 1Gi
+  metrics:
+    enabled: true
+    podMonitor:
+      enabled: true
+      namespace: default
+mongo-express:
+  mongodbEnableAdmin: true
+  mongodbAdminPassword: "password123"
+  mongodbServer: mongodb-mongodb-sharded
+  service:
+    type: NodePort
+kube-prometheus-stack:
+  namespaceOverride: default
+  prometheus:
+    prometheusSpec:
+      serviceMonitorSelectorNilUsesHelmValues: false
+      serviceMonitorSelector: {}
+  grafana:
+    enabled: true
+    namespaceOverride: default
+prometheus-mongodb-exporter:
+  mongodb:
+    uri: "mongodb://root:password123@mongodb-mongodb-sharded:27017"
+  # enable monitoring for mongodb exporter
+  serviceMonitor:
+    enabled: true
